@@ -2,7 +2,7 @@ from weather import CITIES, celsius_to_fahrenheit, get_city_stats, load_weather_
 
 
 def main():
-    # Load data once at the start
+    # Load data oncse at the start
     weather_data = load_weather_data()
 
     city = input("What city would you like to know more about? ")
@@ -11,12 +11,16 @@ def main():
         stats = get_city_stats(weather_data, city)
         # Format and display the temperature
         print(f"\n--- Weather Stats for {city} ---")
-        print(f"Average Temperature: {stats["average_temp"]:.0f}°F")
+        print(f"Average Temperature: {stats["average_temp"]:.0f}°C")
         print(f"Average Humidity: {stats["average_humidity"]:.2f}")
         print(f"Average Precipitation: {stats["average_precipitation"]:.2f}")
         print(f"Average Windspeed: {stats["average_windspeed"]:.0f} Kilometers/Hour")
-        print(f"Highest Temp: {stats["max_temp"]:.0f}°F")
-        print(f"Lowest Temp: {stats["min_temp"]:.0f}°F")
+        print(
+            f"Highest Temp: {stats["max_temp"]:.0f}°C on {stats['max_temp_date'].strftime('%B %d, %Y at %I:%M %p')}"
+        )
+        print(
+            f"Lowest Temp: {stats["min_temp"]:.0f}°C on {stats['min_temp_date'].strftime('%B %d, %Y at %I:%M %p')}"
+        )
     else:
         print("Invalid city")
 
